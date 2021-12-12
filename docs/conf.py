@@ -69,7 +69,7 @@ highlight_language = "python3"
 
 # Material theme options (see theme.conf for more information)
 html_theme_options = {
-    "nav_title": "Quacks",
+    "nav_title": "🦆 Quacks",
     # Set the color and the accent color
     "color_primary": "teal",
     "color_accent": "green",
@@ -98,5 +98,4 @@ html_sidebars = {
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
-    "snug": ("https://snug.readthedocs.org/en/latest/", None),
 }
