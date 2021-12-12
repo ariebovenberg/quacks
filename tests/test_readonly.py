@@ -1,11 +1,12 @@
-from typing_extensions import Protocol
+from typing import ClassVar
+
 import pytest
+from typing_extensions import Protocol
 
 from quacks import readonly
 
 
 def test_empty():
-
     class Z(Protocol):
         ...
 
@@ -48,15 +49,33 @@ def test_subprotocols_not_supported():
 
 
 def test_no_mutable_fields():
-
     @readonly
     class B(Protocol):
+        @property
+        def myprop(self) -> int:
+            return 8
+
+        def zzz(self, k: int) -> str:
+            return k * "z"
+
+    len(B.__dict__) == 13
+
+
+def test_freezes_attributes():
+    @readonly
+    class A(Protocol):
+        a: float
+        b: int
+
+        k: ClassVar[str]
 
         @property
         def myprop(self) -> int:
             return 8
 
         def zzz(self, k: int) -> str:
-            return k * 'z'
+            return k * "z"
 
-    len(B.__dict__) == 13
+    assert isinstance(A.a, property)
+    assert isinstance(A.b, property)
+    assert not hasattr(A, 'k')

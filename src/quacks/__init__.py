@@ -1,3 +1,5 @@
+import sys
+
 from typing_extensions import Protocol
 
 # Single-sourcing the version number with poetry:
@@ -6,6 +8,9 @@ try:
     __version__ = __import__("importlib.metadata").metadata.version(__name__)
 except ModuleNotFoundError:  # pragma: no cover
     __version__ = __import__("importlib_metadata").version(__name__)
+
+
+__all__ = ["readonly"]
 
 
 def readonly(cls: type) -> type:
@@ -43,8 +48,24 @@ def readonly(cls: type) -> type:
     if Protocol not in cls.__bases__:
         raise TypeError("Readonly decorator can only be applied to Protocols.")
     elif any(
-        b is not Protocol and Protocol in b.__bases__
-        for b in cls.__bases__
+        b is not Protocol and Protocol in b.__bases__ for b in cls.__bases__
     ):
         raise NotImplementedError("Subprotocols not yet supported.")
+
+    for name, typ in getattr(cls, "__annotations__", {}).items():
+        if not _is_classvar(typ):
+            setattr(cls, name, property(lambda _: None))
     return cls
+
+
+if sys.version_info < (3, 7):  # pragma: no cover
+    from typing import _ClassVar
+
+    def _is_classvar(t: type) -> bool:
+        return type(t) is _ClassVar
+
+else:
+    from typing import ClassVar, _GenericAlias  # type: ignore
+
+    def _is_classvar(t: type) -> bool:
+        return type(t) is _GenericAlias and t.__origin__ is ClassVar
