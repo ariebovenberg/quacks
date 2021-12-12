@@ -1,6 +1,6 @@
 import sys
 
-from typing_extensions import Protocol
+from typing_extensions import TYPE_CHECKING, Protocol
 
 # Single-sourcing the version number with poetry:
 # https://github.com/python-poetry/poetry/pull/2366#issuecomment-652418094
@@ -54,18 +54,31 @@ def readonly(cls: type) -> type:
 
     for name, typ in getattr(cls, "__annotations__", {}).items():
         if not _is_classvar(typ):
-            setattr(cls, name, property(lambda _: None))
+
+            @property  # type: ignore
+            def prop(self):  # type: ignore
+                ...  # pragma: no cover
+
+            prop.fget.__name__ = name  # type: ignore
+            prop.fget.__annotations__ = {"return": typ}  # type: ignore
+            setattr(cls, name, prop)
     return cls
 
 
-if sys.version_info < (3, 7):  # pragma: no cover
-    from typing import _ClassVar
+if TYPE_CHECKING:  # pragma: no cover
 
     def _is_classvar(t: type) -> bool:
-        return type(t) is _ClassVar
+        ...
 
-else:
-    from typing import ClassVar, _GenericAlias  # type: ignore
+else:  # pragma: no cover
+    if sys.version_info < (3, 7):
+        from typing import _ClassVar
 
-    def _is_classvar(t: type) -> bool:
-        return type(t) is _GenericAlias and t.__origin__ is ClassVar
+        def _is_classvar(t: type) -> bool:
+            return type(t) is _ClassVar
+
+    else:
+        from typing import ClassVar, _GenericAlias
+
+        def _is_classvar(t: type) -> bool:
+            return type(t) is _GenericAlias and t.__origin__ is ClassVar

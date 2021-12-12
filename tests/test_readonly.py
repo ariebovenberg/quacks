@@ -14,14 +14,14 @@ def test_empty():
     class A(Protocol):
         ...
 
-    assert len(A.__dict__) == len(Z.__dict__)
+    assert A.__dict__.keys() >= Z.__dict__.keys()
 
 
 def test_only_protocols_accepted():
     with pytest.raises(TypeError, match="Protocol"):
 
         @readonly
-        class C:
+        class C:  # type: ignore
             ...
 
 
@@ -33,7 +33,7 @@ def test_protocol_implementation_not_accepted():
             ...
 
         @readonly
-        class C(A):
+        class C(A):  # type: ignore
             ...
 
 
@@ -58,10 +58,10 @@ def test_no_mutable_fields():
         def zzz(self, k: int) -> str:
             return k * "z"
 
-    len(B.__dict__) == 13
+    assert isinstance(B.myprop, property)
 
 
-def test_freezes_attributes():
+def test_freezes_attributes_into_properties():
     @readonly
     class A(Protocol):
         a: float
@@ -77,5 +77,9 @@ def test_freezes_attributes():
             return k * "z"
 
     assert isinstance(A.a, property)
+    assert A.a.fget.__annotations__ == {"return": float}
+    assert A.a.fget.__name__ == "a"  # type: ignore
     assert isinstance(A.b, property)
-    assert not hasattr(A, 'k')
+    assert A.b.fget.__annotations__ == {"return": int}
+    assert A.b.fget.__name__ == "b"  # type: ignore
+    assert not hasattr(A, "k")
