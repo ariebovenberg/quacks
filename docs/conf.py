@@ -52,7 +52,7 @@ master_doc = "index"
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = "colorful"
+pygments_style = "tango"
 
 autodoc_member_order = "bysource"
 
