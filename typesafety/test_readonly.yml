@@ -1,0 +1,109 @@
+- case: doesnt_work_on_non_protocols
+  main: |
+    from quacks import readonly
+
+    @readonly
+    class A:  # E: @readonly decorator only supported on protocols.
+         a: int
+
+         def foo(self) -> int:
+             ...
+
+- case: default_value_not_supported_yet
+  main: |
+    from quacks import readonly
+    from typing_extensions import Protocol
+
+    @readonly
+    class A(Protocol):
+         a: int = 4  # E: @readonly doesn't support default values yet.
+
+- case: satisfy_protocol
+  main: |
+    from typing import ClassVar
+    from typing_extensions import Protocol
+    from quacks import readonly
+    from dataclasses import dataclass
+    from datetime import date
+
+    @readonly
+    class Datelike(Protocol):
+         month: int
+         day: int
+         min: ClassVar[date]
+
+         def today(self) -> date:
+             ...
+
+    a1: Datelike = date(2007, 12, 1)
+
+    @dataclass(frozen=True)
+    class MyDate:
+        day: int
+        month: int
+        comment: str = 'no comment'
+
+        min: ClassVar[date] = date(2000, 1, 1)
+
+        def today(self) -> date:
+            raise NotImplementedError()
+
+    a2: Datelike = MyDate(4, 2)
+
+    @dataclass
+    class MyMutableDate:
+        day: int
+        month: int
+        description: str = ''
+
+        min: ClassVar[date] = date(2000, 1, 1)
+
+        def today(self) -> date:
+            raise NotImplementedError()
+
+    a3: Datelike = MyMutableDate(4, 2)
+
+- case: failure_to_satisfy_protocol
+  main: |
+    from typing import ClassVar
+    from typing_extensions import Protocol
+    from quacks import readonly
+    from dataclasses import dataclass
+    from datetime import date
+
+    @readonly
+    class Datelike(Protocol):
+         month: int
+         day: int
+         hour: int
+
+         min: ClassVar[date]
+
+         def today(self) -> date:
+             ...
+
+    a1: Datelike = date(2007, 12, 1)
+
+    @dataclass(frozen=True)
+    class MyDate:
+        day: int
+        comment: str = 'no comment'
+
+        min: ClassVar[date] = date(2000, 1, 1)
+
+    a2: Datelike = MyDate(4)
+
+    @dataclass
+    class MyMutableDate:
+        description: str = ''
+
+        def today(self) -> date:
+            raise NotImplementedError()
+
+    a3: Datelike = MyMutableDate()
+  out: |
+    main:18: error: Incompatible types in assignment (expression has type "date", variable has type "Datelike")
+    main:18: note: "date" is missing following "Datelike" protocol member:
+    main:18: note:     hour
+    main:27: error: Incompatible types in assignment (expression has type "MyDate", variable has type "Datelike")
+    main:36: error: Incompatible types in assignment (expression has type "MyMutableDate", variable has type "Datelike")

@@ -1,17 +1,72 @@
 [tool.poetry]
 name = "quacks"
-version = "0.0.1"
+version = "0.1.0"
 description = "Improved, mypy-compatible duck typing with Protocol"
 authors = ["Arie Bovenberg <a.c.bovenberg@gmail.com>"]
 license = "MIT"
-readme = "README.md"
-include = ["README.md"]
+readme = "README.rst"
+include = ["README.rst", "CHANGELOG.rst"]
 repository = "https://github.com/ariebovenberg/quacks"
+packages = [
+    { include = "quacks", from = "src" },
+]
+keywords = [
+    "ducktyping",
+    "protocol",
+    "mypy",
+    "immutability",
+]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.6.2"
+importlib-metadata = {version = ">=1,<5", python = "<3.8"}
+dataclasses = {version = ">0.4", python = "<3.7"}
 
 [tool.poetry.dev-dependencies]
+tox = "^3.24.4"
+pytest = "^6.2.5"
+black = "^21.12b0"
+mypy = "^0.910"
+pytest-mypy-plugins = "^1.9.2"
+isort = "^5.10.1"
+pytest-cov = "^3.0.0"
+flake8 = "^4.0.1"
+
+[tool.black]
+line-length = 79
+include = '\.pyi?$'
+exclude = '''
+/(
+  \.eggs
+| \.git
+| \.mypy_cache
+| \.tox
+| \.venv
+| _build
+| build
+| dist
+)/
+'''
+
+[tool.isort]
+line_length = 79
+profile = 'black'
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = [
+  "--strict-markers",
+  "--strict-config",
+
+  "--cov=quacks",
+  "--cov-report=html",
+  "--cov-report=xml",
+  "--cov-branch",
+  "--cov-fail-under=100",
+
+  "--mypy-ini-file=mypy.ini",
+]
+
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
