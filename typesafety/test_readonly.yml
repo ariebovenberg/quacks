@@ -107,3 +107,32 @@
     main:18: note:     hour
     main:27: error: Incompatible types in assignment (expression has type "MyDate", variable has type "Datelike")
     main:36: error: Incompatible types in assignment (expression has type "MyMutableDate", variable has type "Datelike")
+- case: complex_typing
+  main: |
+    from typing import ClassVar, TypeVar
+    from typing_extensions import Protocol
+    from quacks import readonly
+    from dataclasses import dataclass
+    from datetime import date
+
+    T = TypeVar('T', covariant=True)
+
+    @readonly
+    class A(Protocol[T]):
+        a: T
+        b: 'B'
+
+    class B:
+        pass
+
+    @dataclass
+    class C:
+        a: int
+        b: B
+
+    a: A[int] =  C(1, B())
+    a2: A[str] = C(3, B())
+  out: |
+    main:23: error: Incompatible types in assignment (expression has type "C", variable has type "A[str]")
+    main:23: note: Following member(s) of "C" have conflicts:
+    main:23: note:     a: expected "str", got "int"

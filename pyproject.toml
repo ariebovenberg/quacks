@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "quacks"
-version = "0.1.0"
+version = "0.1.1"
 description = "Improved, mypy-compatible duck typing with Protocol"
 authors = ["Arie Bovenberg <a.c.bovenberg@gmail.com>"]
 license = "MIT"

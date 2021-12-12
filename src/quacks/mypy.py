@@ -31,7 +31,6 @@ def make_statement_readonly(c: ClassDefContext, s: Statement) -> None:
     if node.is_classvar:
         return
 
-    assert isinstance(node.type, Instance)
     node.is_property = True
 
 
