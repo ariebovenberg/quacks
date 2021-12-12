@@ -1,6 +1,21 @@
 🦆 Quacks
 =========
 
+.. image:: https://img.shields.io/pypi/v/quacks.svg?style=flat-square
+   :target: https://pypi.python.org/pypi/quacks
+
+.. image:: https://img.shields.io/pypi/l/quacks.svg?style=flat-square
+   :target: https://pypi.python.org/pypi/quacks
+
+.. image:: https://img.shields.io/pypi/pyversions/quacks.svg?style=flat-square
+   :target: https://pypi.python.org/pypi/quacks
+
+.. image:: https://img.shields.io/readthedocs/quacks.svg?style=flat-square
+   :target: http://quacks.readthedocs.io/
+
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square
+   :target: https://github.com/psf/black
+
   If it walks like a duck and it quacks like a duck, then it must be a duck
 
 Improved, mypy-compatible duck typing with ``Protocol``.
