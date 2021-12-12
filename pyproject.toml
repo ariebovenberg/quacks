@@ -30,6 +30,7 @@ classifiers = [
 python = "^3.6.2"
 importlib-metadata = {version = ">=1,<5", python = "<3.8"}
 dataclasses = {version = ">0.4", python = "<3.7"}
+typing-extensions = ">3.7,<5"
 
 [tool.poetry.dev-dependencies]
 tox = "^3.24.4"
