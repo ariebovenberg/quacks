@@ -20,17 +20,31 @@
 
   If it walks like a duck and it quacks like a duck, then it must be a duck
 
-Improved, mypy-compatible duck typing with ``Protocol``.
+Better duck-typing with mypy-compatible extensions to `Protocol <https://www.python.org/dev/peps/pep-0544/>`_
 
-Why?
-----
+🎯 Why?
+-------
 
-PEP544 gave us ``Protocol``, a way to define duck typing statically.
-In some cases, it's still a bit cumbersome to work with.
-This library gives you some much needed niceties.
+PEP544 gave Python protocols, a way to define duck typing statically.
+This library gives you some niceties to make common idioms easier.
 
-Features
---------
+📦 Installation
+---------------
+
+.. code-block:: bash
+
+   pip install quacks
+
+⚠️ For type checking to work with ``mypy``, you'll need to enable the plugin in
+your `mypy config file <https://mypy.readthedocs.io/en/latest/config_file.html>`_:
+
+.. code-block:: ini
+
+   [mypy]
+   plugins = quacks.mypy
+
+⭐️ Features
+------------
 
 Easy read-only protocols
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -61,9 +75,12 @@ reducing readability:
         @property
         def name(self) -> str: ...
         @property
+        def is_premium(self) -> bool: ...
 
-Partial protocols (🚧 work in progress 🚧)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Partial protocols (🏗)
+^^^^^^^^^^^^^^^^^^^^^
+
+(🚧 work in progress 🚧)
 
 What if you only need part of a protocol?
 Imagine we have several functions who use various properties of ``User``.
