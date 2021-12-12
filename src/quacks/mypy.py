@@ -2,7 +2,6 @@ from typing import Callable, Optional, Type
 
 from mypy.nodes import AssignmentStmt, NameExpr, Statement, TempNode, Var
 from mypy.plugin import ClassDefContext, Plugin
-from mypy.types import Instance
 
 READONLY_DECORATOR_NAME = "quacks.readonly"
 
