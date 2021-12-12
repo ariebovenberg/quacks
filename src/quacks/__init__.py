@@ -43,7 +43,7 @@ def readonly(cls: type) -> type:
     if Protocol not in cls.__bases__:
         raise TypeError("Readonly decorator can only be applied to Protocols.")
     elif any(
-        issubclass(b, Protocol) and b is not Protocol  # type: ignore
+        b is not Protocol and Protocol in b.__bases__
         for b in cls.__bases__
     ):
         raise NotImplementedError("Subprotocols not yet supported.")
