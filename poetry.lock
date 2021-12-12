@@ -449,6 +449,14 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "types-dataclasses"
+version = "0.6.1"
+description = "Typing stubs for dataclasses"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "typing-extensions"
 version = "4.0.1"
 description = "Backported and Experimental Type Hints for Python 3.6+"
@@ -492,7 +500,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6.2"
-content-hash = "b2aaa0e2e5ec74a4da1dea7d475ca5bccbe4bc8796fd290f06a64a3d86f2586f"
+content-hash = "31caac673fe3f29d2fa6b678c798b0936d59fb7ca1e13839fdfbc471b49f1c03"
 
 [metadata.files]
 atomicwrites = [
@@ -818,6 +826,10 @@ typed-ast = [
     {file = "typed_ast-1.4.3-cp39-cp39-win32.whl", hash = "sha256:209596a4ec71d990d71d5e0d312ac935d86930e6eecff6ccc7007fe54d703808"},
     {file = "typed_ast-1.4.3-cp39-cp39-win_amd64.whl", hash = "sha256:9c6d1a54552b5330bc657b7ef0eae25d00ba7ffe85d9ea8ae6540d2197a3788c"},
     {file = "typed_ast-1.4.3.tar.gz", hash = "sha256:fb1bbeac803adea29cedd70781399c99138358c26d05fcbd23c13016b7f5ec65"},
+]
+types-dataclasses = [
+    {file = "types-dataclasses-0.6.1.tar.gz", hash = "sha256:6568532fed11f854e4db2eb48063385b323b93ecadd09f10a215d56246c306d7"},
+    {file = "types_dataclasses-0.6.1-py3-none-any.whl", hash = "sha256:aa45bb0dacdba09e3195a36ff8337bba45eac03b6f31c4645e87b4a2a47830dd"},
 ]
 typing-extensions = [
     {file = "typing_extensions-4.0.1-py3-none-any.whl", hash = "sha256:7f001e5ac290a0c0401508864c7ec868be4e701886d5b573a9528ed3973d9d3b"},
