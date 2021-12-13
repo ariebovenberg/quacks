@@ -23,16 +23,13 @@
 
   If it walks like a duck and it quacks like a duck, then it must be a duck
 
-Better duck-typing with mypy-compatible extensions to `Protocol <https://www.python.org/dev/peps/pep-0544/>`_
 
-🎯 Why?
--------
-
-PEP544 gave Python protocols, a way to define duck typing statically.
+Thanks to `PEP544 <https://www.python.org/dev/peps/pep-0544/>`_, Python now has protocols:
+a way to define duck typing statically.
 This library gives you some niceties to make common idioms easier.
 
-📦 Installation
----------------
+Installation
+------------
 
 .. code-block:: bash
 
@@ -46,8 +43,8 @@ your `mypy config file <https://mypy.readthedocs.io/en/latest/config_file.html>`
    [mypy]
    plugins = quacks.mypy
 
-⭐️ Features
-------------
+Features
+--------
 
 Easy read-only protocols
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -80,27 +77,37 @@ reducing readability:
         @property
         def is_premium(self) -> bool: ...
 
-Partial protocols (🏗)
-^^^^^^^^^^^^^^^^^^^^^
+Partial protocols (work in progress)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-(🚧 work in progress 🚧)
-
-What if you only need part of a protocol?
+What if you want to reuse parts of a protocol?
 Imagine we have several functions who use various properties of ``User``.
-With partial protocols you can reuse a data 'shape' without requiring
-all attributes.
+With partial protocols you can reuse attributes without having to define
+many overlapping protocols.
+Inspired by `clojure spec <https://youtu.be/YR5WdGrpoug?t=1971>`_.
 
 (exact syntax TBD)
 
 .. code-block:: python
 
-    from quacks import q
+    class User(Protocol):
+        id: int
+        name: str
+        is_premium: bool
+        address: Address
 
-    def determine_discount(u: User[q.id.is_premium]) -> int:
+    class Address(Protocol):
+        street: str
+        city: str
+        country: str
+
+    from quacks import _
+
+    def determine_discount(u: User[_.id.is_premium]) -> int:
         ...  # access `id` and `is_premium` attributes
 
-    def greet(u: User[q.id.name]) -> None:
-        ...  # access `id` and `name` attributes
+    def greet(u: User[_.name.address[_.country]]) -> None:
+        ...  # access `name` and `address.country` attributes
 
     u: User = ...
 
