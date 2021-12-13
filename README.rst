@@ -10,6 +10,9 @@
 .. image:: https://img.shields.io/pypi/pyversions/quacks.svg
    :target: https://pypi.python.org/pypi/quacks
 
+.. image:: https://github.com/ariebovenberg/quacks/actions/workflows/test.yml/badge.svg
+   :target: https://github.com/ariebovenberg/quacks/actions/workflows/test.yml
+
 .. image:: https://img.shields.io/readthedocs/quacks.svg
    :target: http://quacks.readthedocs.io/
 
