@@ -14,10 +14,15 @@ __all__ = ["readonly"]
 
 
 def readonly(cls: type) -> type:
-    """Decorate a :class:`~typing.Protocol` to make it readonly.
+    """Decorate a :class:`~typing.Protocol` to make it read-only.
 
-    Unlike default protocol attributes, readonly protocols will match
+    Unlike default protocol attributes, read-only protocols will match
     frozen dataclasses and other immutable types.
+
+    Read-only attributes are already supported in protocols with
+    ``@property``, but this is cumbersome to do for many attributes.
+    The ``@readonly`` decorator effectively transforms all mutable attributes
+    into read-only properties.
 
     Example
     -------
@@ -39,12 +44,14 @@ def readonly(cls: type) -> type:
             @property
             def name(self) -> str: ...
             @property
+            def is_premium(self) -> bool: ...
 
     Warning
     -------
 
     Subprotocols and inherited attributes are not supported yet.
     """
+    # Note that only classes *directly* inheriting from Protocol are protocols.
     if Protocol not in cls.__bases__:
         raise TypeError("Readonly decorator can only be applied to Protocols.")
     elif any(
