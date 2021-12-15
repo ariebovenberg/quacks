@@ -51,12 +51,9 @@ def readonly(cls: type) -> type:
 
     Subprotocols and inherited attributes are not supported yet.
     """
-    # Note that only classes *directly* inheriting from Protocol are protocols.
-    if Protocol not in cls.__bases__:
+    if not _is_a_protocol(cls):
         raise TypeError("Readonly decorator can only be applied to Protocols.")
-    elif any(
-        b is not Protocol and Protocol in b.__bases__ for b in cls.__bases__
-    ):
+    elif any(b is not Protocol and _is_a_protocol(b) for b in cls.__bases__):
         raise NotImplementedError("Subprotocols not yet supported.")
 
     for name, typ in getattr(cls, "__annotations__", {}).items():
@@ -70,6 +67,11 @@ def readonly(cls: type) -> type:
             prop.fget.__annotations__ = {"return": typ}  # type: ignore
             setattr(cls, name, prop)
     return cls
+
+
+def _is_a_protocol(t: type) -> bool:
+    # Only classes *directly* inheriting from Protocol are protocols.
+    return Protocol in t.__bases__
 
 
 if TYPE_CHECKING:  # pragma: no cover
