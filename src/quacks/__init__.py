@@ -14,10 +14,15 @@ __all__ = ["readonly"]
 
 
 def readonly(cls: type) -> type:
-    """Decorate a :class:`~typing.Protocol` to make it readonly.
+    """Decorate a :class:`~typing.Protocol` to make it read-only.
 
-    Unlike default protocol attributes, readonly protocols will match
+    Unlike default protocol attributes, read-only protocols will match
     frozen dataclasses and other immutable types.
+
+    Read-only attributes are already supported in protocols with
+    ``@property``, but this is cumbersome to do for many attributes.
+    The ``@readonly`` decorator effectively transforms all mutable attributes
+    into read-only properties.
 
     Example
     -------
@@ -39,17 +44,16 @@ def readonly(cls: type) -> type:
             @property
             def name(self) -> str: ...
             @property
+            def is_premium(self) -> bool: ...
 
     Warning
     -------
 
     Subprotocols and inherited attributes are not supported yet.
     """
-    if Protocol not in cls.__bases__:
+    if not _is_a_protocol(cls):
         raise TypeError("Readonly decorator can only be applied to Protocols.")
-    elif any(
-        b is not Protocol and Protocol in b.__bases__ for b in cls.__bases__
-    ):
+    elif any(b is not Protocol and _is_a_protocol(b) for b in cls.__bases__):
         raise NotImplementedError("Subprotocols not yet supported.")
 
     for name, typ in getattr(cls, "__annotations__", {}).items():
@@ -63,6 +67,11 @@ def readonly(cls: type) -> type:
             prop.fget.__annotations__ = {"return": typ}  # type: ignore
             setattr(cls, name, prop)
     return cls
+
+
+def _is_a_protocol(t: type) -> bool:
+    # Only classes *directly* inheriting from Protocol are protocols.
+    return Protocol in t.__bases__
 
 
 if TYPE_CHECKING:  # pragma: no cover
