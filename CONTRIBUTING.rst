@@ -43,3 +43,8 @@ You can rull all checks locally with ``tox``:
    tox -e docs,py39,mypy
 
 Of course, you can also run ``pytest`` for a quick check.
+
+Submitting a PR
+---------------
+
+When submitting a PR, be sure to follow the provided checklist. Thanks!

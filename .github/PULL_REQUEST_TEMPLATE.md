@@ -9,4 +9,4 @@ to make sure you didn't miss anything.
 - [ ] Issue refereced
 - [ ] Tests added
 - [ ] Build OK
-- [ ] Changelog updated
+- [ ] Added changelog entry (section 'next release')
