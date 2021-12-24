@@ -18,7 +18,7 @@ Installing the Python version is easy with ``pyenv`` and ``pyenv-virtualenv``.
    brew install pyenv pyenv-virtualenv
 
    # if using pyenv-virtualenv, remember to disable poetry virtualenvs
-   config virtualenvs.create false
+   poetry config virtualenvs.create false
 
    pyenv install -v [the required python versions]
    pyenv virtualenv [the main python version, e.g. 3.9.x] quacks
