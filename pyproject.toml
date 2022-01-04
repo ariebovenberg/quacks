@@ -19,7 +19,6 @@ keywords = [
 classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Typing :: Typed",
-    "Programming Language :: Python :: 3.6",
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
@@ -27,9 +26,8 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6.2"
+python = "^3.7.0"
 importlib-metadata = {version = ">=1,<5", python = "<3.8"}
-dataclasses = {version = ">0.4", python = "<3.7"}
 typing-extensions = ">3.7,<5"
 
 [tool.poetry.dev-dependencies]
@@ -41,7 +39,6 @@ pytest-mypy-plugins = "^1.9.2"
 isort = "^5.10.1"
 pytest-cov = "^3.0.0"
 flake8 = "^4.0.1"
-types-dataclasses = {version = ">0.4", python = "<3.7"}
 
 [tool.black]
 line-length = 79

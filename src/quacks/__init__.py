@@ -1,5 +1,3 @@
-import sys
-
 from typing_extensions import TYPE_CHECKING, Protocol
 
 # Single-sourcing the version number with poetry:
@@ -80,14 +78,7 @@ if TYPE_CHECKING:  # pragma: no cover
         ...
 
 else:  # pragma: no cover
-    if sys.version_info < (3, 7):
-        from typing import _ClassVar
+    from typing import ClassVar, _GenericAlias
 
-        def _is_classvar(t: type) -> bool:
-            return type(t) is _ClassVar
-
-    else:
-        from typing import ClassVar, _GenericAlias
-
-        def _is_classvar(t: type) -> bool:
-            return type(t) is _GenericAlias and t.__origin__ is ClassVar
+    def _is_classvar(t: type) -> bool:
+        return type(t) is _GenericAlias and t.__origin__ is ClassVar
