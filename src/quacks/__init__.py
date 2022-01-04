@@ -1,4 +1,7 @@
-from typing_extensions import TYPE_CHECKING, Protocol
+from typing import _GenericAlias  # type: ignore
+from typing import ClassVar
+
+from typing_extensions import Protocol
 
 # Single-sourcing the version number with poetry:
 # https://github.com/python-poetry/poetry/pull/2366#issuecomment-652418094
@@ -72,13 +75,5 @@ def _is_a_protocol(t: type) -> bool:
     return Protocol in t.__bases__
 
 
-if TYPE_CHECKING:  # pragma: no cover
-
-    def _is_classvar(t: type) -> bool:
-        ...
-
-else:  # pragma: no cover
-    from typing import ClassVar, _GenericAlias
-
-    def _is_classvar(t: type) -> bool:
-        return type(t) is _GenericAlias and t.__origin__ is ClassVar
+def _is_classvar(t: type) -> bool:
+    return type(t) is _GenericAlias and t.__origin__ is ClassVar
