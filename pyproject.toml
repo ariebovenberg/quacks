@@ -32,7 +32,7 @@ typing-extensions = ">3.7,<5"
 
 [tool.poetry.dev-dependencies]
 tox = "^3.24.5"
-pytest = "^7.1.0"
+pytest = "^7.1.1"
 black = "^22.1"
 mypy = "^0.941"
 pytest-mypy-plugins = "^1.9.3"
