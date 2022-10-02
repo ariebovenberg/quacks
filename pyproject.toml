@@ -37,7 +37,7 @@ black = "^22.6"
 mypy = "^0.971"
 pytest-mypy-plugins = "^1.10.0"
 isort = "^5.10.1"
-pytest-cov = "^3.0.0"
+pytest-cov = "^4.0.0"
 flake8 = "^5.0.4"
 
 [tool.black]
