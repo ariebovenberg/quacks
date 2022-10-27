@@ -320,7 +320,7 @@ testing = ["fields", "hunter", "process-tests", "pytest-xdist", "six", "virtuale
 
 [[package]]
 name = "pytest-mypy-plugins"
-version = "1.10.0"
+version = "1.10.1"
 description = "pytest plugin for writing tests for mypy plugins"
 category = "dev"
 optional = false
@@ -439,7 +439,7 @@ testing = ["func-timeout", "jaraco.itertools", "pytest (>=6)", "pytest-black (>=
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7.0"
-content-hash = "028b981b88b94679edd87ef2c4045985d3975f0e2863373ae6aff60d83db0a5e"
+content-hash = "94937f0b5627d127b3dd64f46ea34cfdc815b2bc257b036c90d1d02933c2cb66"
 
 [metadata.files]
 atomicwrites = [
@@ -630,8 +630,8 @@ pytest-cov = [
     {file = "pytest_cov-4.0.0-py3-none-any.whl", hash = "sha256:2feb1b751d66a8bd934e5edfa2e961d11309dc37b73b0eabe73b5945fee20f6b"},
 ]
 pytest-mypy-plugins = [
-    {file = "pytest-mypy-plugins-1.10.0.tar.gz", hash = "sha256:70788f93ebc1f0135c7f29dbed36dc4d22e12dc93c0a72ad919a27d57af26658"},
-    {file = "pytest_mypy_plugins-1.10.0-py3-none-any.whl", hash = "sha256:b9d5cd2bbebe6c65732874d0012857397cb39214eee0d15b438bf9304fce2879"},
+    {file = "pytest-mypy-plugins-1.10.1.tar.gz", hash = "sha256:1f258ccd784341dee93d4baaedafe715ead2a1f730c59282c45abd025612cf16"},
+    {file = "pytest_mypy_plugins-1.10.1-py3-none-any.whl", hash = "sha256:d32e26927bea6646cd1c79f7115cd6e9dcf583fa07d2ab6d4cbeb70bccb42942"},
 ]
 pyyaml = [
     {file = "PyYAML-6.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:d4db7c7aef085872ef65a8fd7d6d09a14ae91f691dec3e87ee5ee0539d516f53"},
