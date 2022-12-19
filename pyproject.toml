@@ -36,7 +36,7 @@ pytest = "^7.2.0"
 black = "^22.10"
 mypy = "^0.971"
 pytest-mypy-plugins = "^1.10.1"
-isort = "^5.10.1"
+isort = "^5.11.3"
 pytest-cov = "^4.0.0"
 flake8 = "^5.0.4"
 
