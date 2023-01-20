@@ -61,7 +61,7 @@ def readonly(cls: type) -> type:
         if not _is_classvar(typ):
 
             @property  # type: ignore
-            def prop(self):  # type: ignore
+            def prop(self):
                 ...  # pragma: no cover
 
             prop.fget.__name__ = name  # type: ignore
