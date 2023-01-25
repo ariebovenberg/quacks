@@ -3,11 +3,11 @@
     from quacks import readonly
 
     @readonly
-    class A:  # E: @readonly decorator only supported on protocols.
+    class A:  # E: @readonly decorator only supported on protocols.  [misc]
          a: int
 
          def foo(self) -> int:
-             ...
+             return 2
 
 - case: default_value_not_supported_yet
   main: |
@@ -16,7 +16,7 @@
 
     @readonly
     class A(Protocol):
-         a: int = 4  # E: @readonly doesn't support default values yet.
+         a: int = 4  # E: @readonly doesn't support default values yet.  [misc]
 
 - case: satisfy_protocol
   main: |
@@ -102,11 +102,11 @@
 
     a3: Datelike = MyMutableDate()
   out: |
-    main:18: error: Incompatible types in assignment (expression has type "date", variable has type "Datelike")
+    main:18: error: Incompatible types in assignment (expression has type "date", variable has type "Datelike")  [assignment]
     main:18: note: "date" is missing following "Datelike" protocol member:
     main:18: note:     hour
-    main:27: error: Incompatible types in assignment (expression has type "MyDate", variable has type "Datelike")
-    main:36: error: Incompatible types in assignment (expression has type "MyMutableDate", variable has type "Datelike")
+    main:27: error: Incompatible types in assignment (expression has type "MyDate", variable has type "Datelike")  [assignment]
+    main:36: error: Incompatible types in assignment (expression has type "MyMutableDate", variable has type "Datelike")  [assignment]
 - case: complex_typing
   main: |
     from typing import ClassVar, TypeVar
@@ -133,6 +133,6 @@
     a: A[int] =  C(1, B())
     a2: A[str] = C(3, B())
   out: |
-    main:23: error: Incompatible types in assignment (expression has type "C", variable has type "A[str]")
+    main:23: error: Incompatible types in assignment (expression has type "C", variable has type "A[str]")  [assignment]
     main:23: note: Following member(s) of "C" have conflicts:
     main:23: note:     a: expected "str", got "int"
