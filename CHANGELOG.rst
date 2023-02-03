@@ -4,6 +4,15 @@ Changelog
 Next release
 ------------
 
+1.0.0 (2023-02-03)
+------------------
+
+- 🦺 First 1.x release. Semantic versioning will be used to
+  indicate potential breaking changes in the future.
+- 🐍 Add official Python 3.11 support.
+- 👌 Simplify name of mypy plugin from ``quacks.mypy`` to ``quacks``.
+  The old name is still accessible for backwards compatibility.
+
 0.2.0 (2022-01-04)
 ------------------
 

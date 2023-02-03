@@ -26,7 +26,6 @@ def test_only_protocols_accepted():
 
 
 def test_protocol_implementation_not_accepted():
-
     with pytest.raises(TypeError, match="Protocol"):
 
         class A(Protocol):

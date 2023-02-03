@@ -41,7 +41,7 @@ your `mypy config file <https://mypy.readthedocs.io/en/latest/config_file.html>`
 .. code-block:: ini
 
    [mypy]
-   plugins = quacks.mypy
+   plugins = quacks
 
 Features
 --------
@@ -76,40 +76,3 @@ reducing readability:
         def name(self) -> str: ...
         @property
         def is_premium(self) -> bool: ...
-
-Partial protocols (work in progress)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-What if you want to reuse parts of a protocol?
-Imagine we have several functions who use various properties of ``User``.
-With partial protocols you can reuse attributes without having to define
-many overlapping protocols.
-Inspired by `clojure spec <https://youtu.be/YR5WdGrpoug?t=1971>`_.
-
-(exact syntax TBD)
-
-.. code-block:: python
-
-    class User(Protocol):
-        id: int
-        name: str
-        is_premium: bool
-        address: Address
-
-    class Address(Protocol):
-        street: str
-        city: str
-        country: str
-
-    from quacks import _
-
-    def determine_discount(u: User[_.id.is_premium]) -> int:
-        ...  # access `id` and `is_premium` attributes
-
-    def greet(u: User[_.name.address[_.country]]) -> None:
-        ...  # access `name` and `address.country` attributes
-
-    u: User = ...
-
-    determine_discount(u)
-    greet(u)

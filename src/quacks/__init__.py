@@ -1,5 +1,5 @@
 from typing import _GenericAlias  # type: ignore
-from typing import ClassVar
+from typing import TYPE_CHECKING, ClassVar
 
 from typing_extensions import Protocol
 
@@ -12,6 +12,20 @@ except ModuleNotFoundError:  # pragma: no cover
 
 
 __all__ = ["readonly"]
+
+
+# The logic below allows the mypy plugin to be exposed at root level,
+# while also ensuring:
+# - mypy doesn't become a runtime dependency
+# - mypy itself is not scanned during type checking
+if not TYPE_CHECKING:  # pragma: no cover
+
+    def __getattr__(name):
+        if name == "plugin":
+            from .mypy import plugin
+
+            return plugin
+        raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
 
 
 def readonly(cls: type) -> type:

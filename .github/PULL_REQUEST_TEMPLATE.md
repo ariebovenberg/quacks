@@ -10,3 +10,8 @@ to make sure you didn't miss anything.
 - [ ] Tests added
 - [ ] Build OK
 - [ ] Added changelog entry (section 'next release')
+- [ ] Bumped version in `pyproject.toml`
+- [ ] Merge PR
+- [ ] Delete branch
+- [ ] Add tag
+- [ ] Publish to PyPI
