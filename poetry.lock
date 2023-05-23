@@ -456,14 +456,14 @@ testing = ["fields", "hunter", "process-tests", "pytest-xdist", "six", "virtuale
 
 [[package]]
 name = "pytest-mypy-plugins"
-version = "1.11.0"
+version = "1.11.1"
 description = "pytest plugin for writing tests for mypy plugins"
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pytest-mypy-plugins-1.11.0.tar.gz", hash = "sha256:dbd2a4ddf665cd68b185a0ad79ca1f18149b05952eb656249f0ca3129147d9ea"},
-    {file = "pytest_mypy_plugins-1.11.0-py3-none-any.whl", hash = "sha256:7f681c5dec7f95ab05c82b701d33d5d378bc24ce78a98db3b1a6ab15e1b5455f"},
+    {file = "pytest-mypy-plugins-1.11.1.tar.gz", hash = "sha256:10b51b8b6d6573589d5c1482ced943efa2571df842749cbb2a2446d82c710a49"},
+    {file = "pytest_mypy_plugins-1.11.1-py3-none-any.whl", hash = "sha256:d218e1aa20f20c751fe69f149deec6ec978b024c78ce3645e08d083acabf43d6"},
 ]
 
 [package.dependencies]
@@ -700,4 +700,4 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.7.0"
-content-hash = "00f2dbf34dfc008b2b3172d8b3f9125b475d8db8ad5926769bcee84420968c9a"
+content-hash = "a3971f1f63dc0ec5989a26fa8de466b1886662c3a9ee5a18f341652e4a7874a7"
