@@ -1,2 +1,2 @@
-sphinx~=7.2.3
+sphinx~=7.2.4
 sphinx-material~=0.0.36
