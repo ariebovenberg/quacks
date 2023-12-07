@@ -12,7 +12,7 @@
 - case: default_value_not_supported_yet
   main: |
     from quacks import readonly
-    from typing_extensions import Protocol
+    from typing import Protocol
 
     @readonly
     class A(Protocol):
@@ -21,7 +21,7 @@
 - case: satisfy_protocol
   main: |
     from typing import ClassVar
-    from typing_extensions import Protocol
+    from typing import Protocol
     from quacks import readonly
     from dataclasses import dataclass
     from datetime import date
@@ -66,7 +66,7 @@
 - case: failure_to_satisfy_protocol
   main: |
     from typing import ClassVar
-    from typing_extensions import Protocol
+    from typing import Protocol
     from quacks import readonly
     from dataclasses import dataclass
     from datetime import date
@@ -110,7 +110,7 @@
 - case: complex_typing
   main: |
     from typing import ClassVar, TypeVar
-    from typing_extensions import Protocol
+    from typing import Protocol
     from quacks import readonly
     from dataclasses import dataclass
     from datetime import date

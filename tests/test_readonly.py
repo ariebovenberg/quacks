@@ -1,7 +1,6 @@
-from typing import ClassVar
+from typing import ClassVar, Protocol
 
 import pytest
-from typing_extensions import Protocol
 
 from quacks import readonly
 

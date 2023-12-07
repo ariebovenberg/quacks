@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "quacks"
-version = "1.0.0"
+version = "1.1.0"
 description = "Better duck-typing with mypy-compatible extensions to Protocol"
 authors = ["Arie Bovenberg <a.c.bovenberg@gmail.com>"]
 license = "MIT"
@@ -19,26 +19,24 @@ keywords = [
 classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Typing :: Typed",
-    "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
 ]
 
 [tool.poetry.dependencies]
-python = "^3.7.0"
-importlib-metadata = {version = ">=4", python = "<3.8"}
-typing-extensions = ">3.7,<5"
+python = "^3.8.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.4.3"
 black = "^23.3.0"
-mypy = "^1.4"
-pytest-mypy-plugins = "^2.0.0"
+mypy = "^1.7"
+pytest-mypy-plugins = "^3.0.0"
 isort = "^5.11.5"
 pytest-cov = "^4.1.0"
-flake8 = "^5.0.4"
+flake8 = "^6"
 
 [tool.black]
 line-length = 79

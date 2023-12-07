@@ -4,6 +4,12 @@ Changelog
 Next release
 ------------
 
+1.1.0 (2023-12-07)
+------------------
+
+- 🐍 Add official Python 3.12 support, drop Python 3.7 support.
+- 🗑️ No dependencies anymore!
+
 1.0.0 (2023-02-03)
 ------------------
 
