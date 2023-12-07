@@ -1,14 +1,9 @@
 from typing import _GenericAlias  # type: ignore
-from typing import TYPE_CHECKING, ClassVar
-
-from typing_extensions import Protocol
+from typing import TYPE_CHECKING, ClassVar, Protocol
 
 # Single-sourcing the version number with poetry:
 # https://github.com/python-poetry/poetry/pull/2366#issuecomment-652418094
-try:
-    __version__ = __import__("importlib.metadata").metadata.version(__name__)
-except ModuleNotFoundError:  # pragma: no cover
-    __version__ = __import__("importlib_metadata").version(__name__)
+__version__ = __import__("importlib.metadata").metadata.version(__name__)
 
 
 __all__ = ["readonly"]
