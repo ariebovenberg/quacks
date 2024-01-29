@@ -6,12 +6,10 @@ from quacks import readonly
 
 
 def test_empty():
-    class Z(Protocol):
-        ...
+    class Z(Protocol): ...
 
     @readonly
-    class A(Protocol):
-        ...
+    class A(Protocol): ...
 
     assert A.__dict__.keys() >= Z.__dict__.keys()
 
@@ -27,8 +25,7 @@ def test_only_protocols_accepted():
 def test_protocol_implementation_not_accepted():
     with pytest.raises(TypeError, match="Protocol"):
 
-        class A(Protocol):
-            ...
+        class A(Protocol): ...
 
         @readonly
         class C(A):  # type: ignore
@@ -38,12 +35,10 @@ def test_protocol_implementation_not_accepted():
 def test_subprotocols_not_supported():
     with pytest.raises(NotImplementedError, match="Subprotocol"):
 
-        class A(Protocol):
-            ...
+        class A(Protocol): ...
 
         @readonly
-        class C(A, Protocol):
-            ...
+        class C(A, Protocol): ...
 
 
 def test_no_mutable_fields():
