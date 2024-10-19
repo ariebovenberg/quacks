@@ -1,2 +1,2 @@
-sphinx<7.3
-sphinx-material~=0.0.36
+sphinx>8,<9
+furo>=2024.8.6,<2025

@@ -4,6 +4,12 @@ Changelog
 Next release
 ------------
 
+1.1.1 (2024-10-19)
+------------------
+
+- Explicit Python 3.13 support, drop Python 3.8 support.
+- Docs improvements.
+
 1.1.0 (2023-12-07)
 ------------------
 
