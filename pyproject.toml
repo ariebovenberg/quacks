@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "quacks"
-version = "1.1.0"
+version = "1.1.1"
 description = "Better duck-typing with mypy-compatible extensions to Protocol"
 authors = ["Arie Bovenberg <a.c.bovenberg@gmail.com>"]
 license = "MIT"
@@ -19,11 +19,11 @@ keywords = [
 classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Typing :: Typed",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
 
 [tool.poetry.dependencies]
