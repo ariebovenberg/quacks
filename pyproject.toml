@@ -30,7 +30,7 @@ classifiers = [
 python = "^3.8.1"
 
 [tool.poetry.dev-dependencies]
-pytest = "^8.3.3"
+pytest = "^8.3.4"
 black = "^24.8.0"
 mypy = "^1.13"
 pytest-mypy-plugins = "^3.1.2"
