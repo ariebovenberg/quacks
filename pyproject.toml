@@ -32,7 +32,7 @@ python = "^3.8.1"
 [tool.poetry.dev-dependencies]
 pytest = "^8.3.4"
 black = "^24.8.0"
-mypy = "^1.13"
+mypy = "^1.14"
 pytest-mypy-plugins = "^3.1.2"
 isort = "^5.13.2"
 pytest-cov = "^5.0.0"
