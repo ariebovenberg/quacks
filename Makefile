@@ -1,9 +1,8 @@
-.PHONY: clean isort isort-check format format-check fix lint type-check pytest check test documentation docs
+.PHONY: clean isort isort-check format format-check fix lint type-check pytest check test documentation
 
 
 init:
 	poetry install
-	pip install -r docs/requirements.txt
 
 clean:
 	rm -rf .coverage .hypothesis .mypy_cache .pytest_cache .tox *.egg-info
@@ -37,6 +36,3 @@ pytest:
 
 test: check pytest
 
-docs:
-	@touch docs/api.rst
-	make -C docs/ html

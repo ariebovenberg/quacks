@@ -1,6 +1,11 @@
 🦆 Quacks
 =========
 
+**Archived:** this project is no longer maintained, and no further
+releases or fixes are planned. The code stays available as-is.
+The documentation from before archiving is in the
+`docs folder <https://github.com/ariebovenberg/quacks/tree/c971fc94e2c69f3560cd86b36deab25424871776/docs>`_.
+
 .. image:: https://img.shields.io/pypi/v/quacks.svg
    :target: https://pypi.python.org/pypi/quacks
 
@@ -12,9 +17,6 @@
 
 .. image:: https://github.com/ariebovenberg/quacks/actions/workflows/build.yml/badge.svg
    :target: https://github.com/ariebovenberg/quacks/actions/workflows/build.yml
-
-.. image:: https://img.shields.io/readthedocs/quacks.svg
-   :target: http://quacks.readthedocs.io/
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black
